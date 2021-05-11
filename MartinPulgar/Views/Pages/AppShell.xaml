@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    x:Class="MartinPulgar.Views.Pages.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fontAwesome="clr-namespace:FontAwesome"
+    xmlns:pages="clr-namespace:MartinPulgar.Views.Pages"
+    FlyoutBackgroundColor="{DynamicResource ShellBackgroundColor}"
+    FlyoutHeaderBehavior="Scroll"
+    Shell.BackgroundColor="{DynamicResource ShellBackgroundColor}"
+    Shell.DisabledColor="{DynamicResource ShellDisabledColor}"
+    Shell.ForegroundColor="{DynamicResource ShellForegroundColor}"
+    Shell.NavBarHasShadow="False"
+    Shell.TabBarBackgroundColor="{DynamicResource ShellTabBarBackgroundColor}"
+    Shell.TabBarDisabledColor="{DynamicResource ShellTabBarDisabledColor}"
+    Shell.TabBarForegroundColor="{DynamicResource ShellTabBarForegroundColor}"
+    Shell.TabBarTitleColor="{DynamicResource AccentColor}"
+    Shell.TabBarUnselectedColor="{DynamicResource ShellTabBarUnselectedColor}"
+    Shell.TitleColor="{DynamicResource ShellUnselectedColor}"
+    Shell.UnselectedColor="{DynamicResource ShellUnselectedColor}">
+
+    <TabBar>
+
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Route="dashboard">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="FontAwesomeRegular"
+                    Glyph="{x:Static fontAwesome:FontAwesomeIcons.Home}"
+                    Size="20" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent
+            Title="Settings"
+            ContentTemplate="{DataTemplate pages:SettingsPage}"
+            Route="settings">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="FontAwesomeRegular"
+                    Glyph="{x:Static fontAwesome:FontAwesomeIcons.Cog}"
+                    Size="20" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+    </TabBar>
+
+</Shell>
