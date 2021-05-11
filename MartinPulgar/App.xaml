@@ -7,7 +7,14 @@
     <Application.Resources>
 
         <!--  Application resource dictionary  -->
-        <ResourceDictionary Source="/Styles/LightTheme.xaml" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--  ViewModelLocator  -->
+                <!--<ResourceDictionary Source="/Services/Dependency/ViewModelLocator.xaml" />-->
+                <!--  Styles  -->
+                <ResourceDictionary Source="/Styles/LightTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
 
     </Application.Resources>
 

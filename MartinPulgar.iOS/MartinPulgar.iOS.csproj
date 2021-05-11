@@ -124,6 +124,9 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="TouchView">
+      <Version>4.1.100</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
@@ -133,5 +136,8 @@
       <Project>{37A84620-E819-4432-9CC2-462CE286915C}</Project>
       <Name>MartinPulgar</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\background.png" />
   </ItemGroup>
 </Project>

@@ -3,14 +3,55 @@
     x:Class="MartinPulgar.Views.Pages.HomePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
     Title="Home"
-    BackgroundColor="{DynamicResource PageBackgroundColor}">
-    <ContentPage.Content>
-        <StackLayout>
+    BackgroundColor="{DynamicResource PageBackgroundColor}"
+    BindingContext="{Binding HomeViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,3" EndPoint="0,0">
+                <GradientStop Offset="0.1" Color="{DynamicResource AccentColor}" />
+                <GradientStop Offset="1.0" Color="{DynamicResource ShellBackgroundColor}" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Image
+            Aspect="AspectFit"
+            HorizontalOptions="Center"
+            Source="background.png"
+            VerticalOptions="Center" />
+
+        <pancakeView:PancakeView
+            Grid.Row="1"
+            Padding="15,10,15,10"
+            touch:TouchEff.Command="{Binding UploadDataCommand}"
+            touch:TouchEff.PressedAnimationDuration="300"
+            touch:TouchEff.PressedOpacity="0.6"
+            touch:TouchEff.PressedScale="0.9"
+            touch:TouchEff.RegularAnimationDuration="300"
+            BackgroundColor="{DynamicResource AccentColor}"
+            CornerRadius="5"
+            HorizontalOptions="Center"
+            Shadow="{pancakeView:ShadowMarkup BlurRadius=15,
+                                              Color=Gray,
+                                              Offset='10,10'}"
+            VerticalOptions="Center"
+            WidthRequest="200">
             <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+                FontSize="20"
+                HorizontalTextAlignment="Center"
+                Text="Upload Data"
+                TextColor="White"
+                VerticalTextAlignment="Center" />
+        </pancakeView:PancakeView>
+
+    </Grid>
+
 </ContentPage>

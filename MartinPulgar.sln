@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MartinPulgar.Android", "Mar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MartinPulgar.iOS", "MartinPulgar.iOS\MartinPulgar.iOS.csproj", "{87DF856B-F380-4270-B42C-C3B4BC3492ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MartinPulgar", "MartinPulgar\MartinPulgar.csproj", "{92DDBA6B-A510-49B4-BC96-C6DBF0FD0D5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MartinPulgar", "MartinPulgar\MartinPulgar.csproj", "{92DDBA6B-A510-49B4-BC96-C6DBF0FD0D5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
