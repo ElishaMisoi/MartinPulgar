@@ -45,6 +45,7 @@ namespace MartinPulgar.Services.Dependency
         private void RegisterInterfaces()
         {
             // Register Interfaces Here
+            TinyIoCContainer.Current.Register<IDataService, DataService>();
         }
 
         void RegisterViewModels()
@@ -53,9 +54,6 @@ namespace MartinPulgar.Services.Dependency
             TinyIoCContainer.Current.Register<HomeViewModel>();
             TinyIoCContainer.Current.Register<UploadViewModel>();
             TinyIoCContainer.Current.Register<SettingsViewModel>();
-            //        .Register<ViewModel>(() => new ViewModel(
-            //TinyIoC.TinyIoCContainer.Current.Resolve<IService>(),
-            //model));
         }
     }
 }
