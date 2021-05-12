@@ -13,5 +13,6 @@ namespace MartinPulgar.Models
         public string Category {get; set;}
         public string Tags { get; set; }
         public string Event { get; set; }
+        public string ClientType { get; set; }
     }
 }
