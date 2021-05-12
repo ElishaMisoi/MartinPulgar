@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using MartinPulgar.Services.Dependency.Interfaces;
+using MartinPulgar.Styles;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +11,18 @@ namespace MartinPulgar.Views.Pages
         public UploadPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            DependencyService.Get<IStatusBar>().ChangeStatusBarColorToBlack();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            ThemeHelper.GetAppTheme();
         }
     }
 }
