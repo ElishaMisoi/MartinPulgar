@@ -54,8 +54,14 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs">
+      <Version>7.1.0.514</Version>
+    </PackageReference>
     <PackageReference Include="Plugin.CurrentActivity">
       <Version>2.1.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>2.0.0.11</Version>
     </PackageReference>
     <PackageReference Include="TouchView">
       <Version>4.1.100</Version>
@@ -64,6 +70,9 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomControls\BorderlessDatePicker.cs" />
+    <Compile Include="CustomControls\BorderlessEntry.cs" />
+    <Compile Include="CustomControls\BorderlessPicker.cs" />
     <Compile Include="Dependency\StatusBar.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
