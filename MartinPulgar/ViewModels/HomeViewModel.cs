@@ -1,4 +1,5 @@
-﻿using MartinPulgar.Views.Pages;
+﻿using MartinPulgar.Utils;
+using MartinPulgar.Views.Pages;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -7,6 +8,11 @@ namespace MartinPulgar.ViewModels
 {
     public class HomeViewModel
     {
+
+        public HomeViewModel()
+        {
+            ConnectivityUtility.ListenForConnectionChanges();
+        }
 
         private async Task NavigateToploadPage()
         {
