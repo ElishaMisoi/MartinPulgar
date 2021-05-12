@@ -47,7 +47,7 @@
             <Label
                 FontSize="20"
                 HorizontalTextAlignment="Center"
-                Text="Upload Data"
+                Text="Create Diary"
                 TextColor="White"
                 VerticalTextAlignment="Center" />
         </pancakeView:PancakeView>
