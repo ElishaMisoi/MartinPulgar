@@ -2,6 +2,7 @@
 using MartinPulgar.Models;
 using MartinPulgar.Services;
 using MartinPulgar.Services.Media;
+using MartinPulgar.Services.Settings;
 using MartinPulgar.Utils;
 using System;
 using System.Collections.Generic;
@@ -209,7 +210,8 @@ namespace MartinPulgar.ViewModels
                         Date = SelectedDate,
                         Category = SelectedCategory,
                         Tags = Tags,
-                        Event = SelectedEvent
+                        Event = SelectedEvent,
+                        ClientType = SettingsService.GetClientType()
                     };
 
                     await _dataService.UplodData(data);

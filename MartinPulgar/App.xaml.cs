@@ -22,7 +22,7 @@ namespace MartinPulgar
         protected override void OnStart()
         {
             // Get App Theme
-            ThemeHelper.ChangeToLightTheme();
+            ThemeHelper.GetAppTheme();
         }
 
         protected override void OnSleep()

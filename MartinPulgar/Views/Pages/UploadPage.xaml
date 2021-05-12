@@ -18,7 +18,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-
         <pancakeView:PancakeView
             Grid.Row="0"
             BackgroundColor="Black"
@@ -26,7 +25,6 @@
             Shadow="{pancakeView:ShadowMarkup BlurRadius=15,
                                               Color=Gray,
                                               Offset='10,10'}">
-
 
             <StackLayout Orientation="Horizontal">
                 <Label
@@ -278,7 +276,8 @@
                             Margin="0,0,0,-5"
                             Placeholder="Comments"
                             PlaceholderColor="Gray"
-                            Text="{Binding Comments, Mode=TwoWay}" />
+                            Text="{Binding Comments, Mode=TwoWay}"
+                            TextColor="{DynamicResource SecondaryColor}" />
                         <BoxView
                             Margin="0,0,0,10"
                             HeightRequest="1"
@@ -300,7 +299,10 @@
                         <Label FontAttributes="Bold" Text="Details" />
 
                         <Grid Margin="0,0,0,-5">
-                            <customControls:BorderlessDatePicker Date="{Binding SelectedDate, Mode=TwoWay}" MaximumDate="{x:Static sys:DateTime.Now}" />
+                            <customControls:BorderlessDatePicker
+                                Date="{Binding SelectedDate, Mode=TwoWay}"
+                                MaximumDate="{x:Static sys:DateTime.Now}"
+                                TextColor="{DynamicResource SecondaryColor}" />
                             <Label
                                 Margin="0,0,10,0"
                                 FontFamily="FontAwesomeRegular"
@@ -321,6 +323,7 @@
                                 ItemsSource="{Binding Areas}"
                                 Placeholder="Select Area"
                                 SelectedItem="{Binding SelectedArea, Mode=TwoWay}"
+                                TextColor="{DynamicResource SecondaryColor}"
                                 TitleColor="Gray" />
                             <Label
                                 Margin="0,0,10,0"
@@ -342,6 +345,7 @@
                                 ItemsSource="{Binding Categories}"
                                 Placeholder="Task Category"
                                 SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
+                                TextColor="{DynamicResource SecondaryColor}"
                                 TitleColor="Gray" />
                             <Label
                                 Margin="0,0,10,0"
@@ -363,7 +367,8 @@
                             Margin="0,0,0,-5"
                             Placeholder="Tags"
                             PlaceholderColor="Gray"
-                            Text="{Binding Tags, Mode=TwoWay}" />
+                            Text="{Binding Tags, Mode=TwoWay}"
+                            TextColor="{DynamicResource SecondaryColor}" />
                         <BoxView
                             Margin="0,0,0,10"
                             HeightRequest="1"
@@ -406,6 +411,7 @@
                                 ItemsSource="{Binding Events}"
                                 Placeholder="Select an event"
                                 SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
+                                TextColor="{DynamicResource SecondaryColor}"
                                 TitleColor="Gray" />
                             <Label
                                 Margin="0,0,10,0"
