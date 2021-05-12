@@ -3,14 +3,142 @@
     x:Class="MartinPulgar.Views.Pages.SettingsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fontawesome="clr-namespace:FontAwesome"
+    xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
     Title="Settings"
-    BackgroundColor="{DynamicResource PageBackgroundColor}">
-    <ContentPage.Content>
-        <StackLayout>
+    BackgroundColor="{DynamicResource PageBackgroundColor}"
+    BindingContext="{Binding SettingsViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <StackLayout Padding="0,20,0,0" Spacing="10">
+
+        <Label
+            Margin="10,0,0,10"
+            FontAttributes="Bold"
+            Text="MODE" />
+
+        <Grid
+            Padding="10"
+            touch:TouchEff.Command="{Binding ThemeChangeCommand}"
+            touch:TouchEff.CommandParameter="LightTheme"
+            touch:TouchEff.PressedAnimationDuration="300"
+            touch:TouchEff.PressedOpacity="0.6"
+            touch:TouchEff.PressedScale="0.9"
+            touch:TouchEff.RegularAnimationDuration="300"
+            BackgroundColor="{DynamicResource ComponentColor}"
+            ColumnSpacing="15">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
             <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+                Grid.Column="0"
+                FontFamily="FontAwesomeSolid"
+                FontSize="25"
+                Text="{x:Static fontawesome:FontAwesomeIcons.Sun}"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Column="1"
+                FontSize="16"
+                Text="Light"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Column="2"
+                FontFamily="FontAwesomeSolid"
+                FontSize="18"
+                IsVisible="{Binding IsLightTheme}"
+                Text="{x:Static fontawesome:FontAwesomeIcons.Check}"
+                TextColor="{DynamicResource AccentColor}"
+                VerticalOptions="Center" />
+
+        </Grid>
+
+        <Grid
+            Padding="10"
+            touch:TouchEff.Command="{Binding ThemeChangeCommand}"
+            touch:TouchEff.CommandParameter="DarkTheme"
+            touch:TouchEff.PressedAnimationDuration="300"
+            touch:TouchEff.PressedOpacity="0.6"
+            touch:TouchEff.PressedScale="0.9"
+            touch:TouchEff.RegularAnimationDuration="300"
+            BackgroundColor="{DynamicResource ComponentColor}"
+            ColumnSpacing="15">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Column="0"
+                FontFamily="FontAwesomeSolid"
+                FontSize="25"
+                Text="{x:Static fontawesome:FontAwesomeIcons.Moon}"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Column="1"
+                FontSize="16"
+                Text="Dark"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Column="2"
+                FontFamily="FontAwesomeSolid"
+                FontSize="18"
+                IsVisible="{Binding IsDarkTheme}"
+                Text="{x:Static fontawesome:FontAwesomeIcons.Check}"
+                TextColor="{DynamicResource AccentColor}"
+                VerticalOptions="Center" />
+
+        </Grid>
+
+        <Grid
+            Padding="10"
+            touch:TouchEff.Command="{Binding ThemeChangeCommand}"
+            touch:TouchEff.CommandParameter="SystemPreferred"
+            touch:TouchEff.PressedAnimationDuration="300"
+            touch:TouchEff.PressedOpacity="0.6"
+            touch:TouchEff.PressedScale="0.9"
+            touch:TouchEff.RegularAnimationDuration="300"
+            BackgroundColor="{DynamicResource ComponentColor}"
+            ColumnSpacing="15">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Column="0"
+                FontFamily="FontAwesomeSolid"
+                FontSize="20"
+                Text="{x:Static fontawesome:FontAwesomeIcons.Cogs}"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Column="1"
+                FontSize="16"
+                Text="System Preferred"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Column="2"
+                FontFamily="FontAwesomeSolid"
+                FontSize="18"
+                IsVisible="{Binding IsSystemPreferredTheme}"
+                Text="{x:Static fontawesome:FontAwesomeIcons.Check}"
+                TextColor="{DynamicResource AccentColor}"
+                VerticalOptions="Center" />
+
+        </Grid>
+
+    </StackLayout>
+
 </ContentPage>

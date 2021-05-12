@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using TouchEffect.iOS;
 using UIKit;
 
 namespace MartinPulgar.iOS
@@ -22,7 +23,14 @@ namespace MartinPulgar.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            // Initialize Rg.Popups
+            Rg.Plugins.Popup.Popup.Init();
+
             global::Xamarin.Forms.Forms.Init();
+
+            // Initialize TouchView
+            TouchEffectPreserver.Preserve();
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

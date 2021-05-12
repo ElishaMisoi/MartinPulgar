@@ -2,13 +2,455 @@
 <ContentPage
     x:Class="MartinPulgar.Views.Pages.UploadPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customControls="clr-namespace:MartinPulgar.CustomControls"
+    xmlns:fontawesome="clr-namespace:FontAwesome"
+    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
+    BackgroundColor="Transparent"
+    BindingContext="{Binding UploadViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <Grid RowSpacing="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+
+        <pancakeView:PancakeView
+            Grid.Row="0"
+            BackgroundColor="Black"
+            CornerRadius="0"
+            Shadow="{pancakeView:ShadowMarkup BlurRadius=15,
+                                              Color=Gray,
+                                              Offset='10,10'}">
+
+
+            <StackLayout Orientation="Horizontal">
+                <Label
+                    touch:TouchEff.Command="{Binding CloseCommand}"
+                    touch:TouchEff.PressedAnimationDuration="300"
+                    touch:TouchEff.PressedOpacity="0.6"
+                    touch:TouchEff.PressedScale="0.9"
+                    touch:TouchEff.RegularAnimationDuration="300"
+                    FontFamily="FontAwesomeLight"
+                    FontSize="25"
+                    HeightRequest="45"
+                    HorizontalTextAlignment="Center"
+                    Text="{x:Static fontawesome:FontAwesomeIcons.Times}"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    WidthRequest="50">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CloseCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label
+                    FontSize="25"
+                    Text="New Diary"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </StackLayout>
+
+        </pancakeView:PancakeView>
+
+        <ScrollView Grid.Row="1" BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+            <Grid Padding="20,20,20,0" RowSpacing="40">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <StackLayout
+                    Grid.Row="0"
+                    Orientation="Horizontal"
+                    Spacing="10">
+
+                    <Label
+                        FontFamily="FontAwesomeSolid"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        Text="{x:Static fontawesome:FontAwesomeIcons.MapMarkerAlt}"
+                        TextColor="Gray"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        TextColor="Gray"
+                        VerticalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="20041075" />
+                                <Span Text=" I " />
+                                <Span Text="TAP-NS-North Strathfield" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                </StackLayout>
+
+                <Grid Grid.Row="1" RowSpacing="15">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            FontSize="20"
+                            Text="Add to site diary"
+                            VerticalOptions="Center" />
+
+                        <Label
+                            Grid.Column="1"
+                            FontFamily="FontAwesomeSolid"
+                            FontSize="25"
+                            HorizontalTextAlignment="Center"
+                            Text="{x:Static fontawesome:FontAwesomeIcons.QuestionCircle}"
+                            TextColor="Gray"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+
+                        <pancakeView:PancakeView
+                            Grid.Row="0"
+                            Padding="15"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            CornerRadius="8"
+                            Shadow="{pancakeView:ShadowMarkup BlurRadius=15,
+                                                              Color=Gray,
+                                                              Offset='5,5'}">
+
+                            <Grid RowSpacing="20">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Label
+                                    Grid.Row="0"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    Text="Add Photos to site diary"
+                                    TextColor="Gray" />
+
+                                <ScrollView
+                                    Grid.Row="1"
+                                    HeightRequest="100"
+                                    HorizontalScrollBarVisibility="Never"
+                                    IsVisible="{Binding IsImageAdded}"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="Start">
+
+                                    <StackLayout
+                                        x:Name="photosStackPanel"
+                                        BindableLayout.ItemsSource="{Binding Photos}"
+                                        Orientation="Horizontal"
+                                        Spacing="10">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid
+                                                    Margin="5"
+                                                    HeightRequest="100"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="100">
+
+                                                    <Image
+                                                        Aspect="AspectFill"
+                                                        HeightRequest="80"
+                                                        HorizontalOptions="Start"
+                                                        Source="{Binding .}"
+                                                        VerticalOptions="End"
+                                                        WidthRequest="90" />
+
+                                                    <Frame
+                                                        Padding="0"
+                                                        BackgroundColor="White"
+                                                        CornerRadius="12"
+                                                        HeightRequest="24"
+                                                        HorizontalOptions="End"
+                                                        VerticalOptions="Start"
+                                                        WidthRequest="24">
+                                                        <Frame.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.RemovePhotoCommand, Source={x:Reference photosStackPanel}}" CommandParameter="{Binding .}" />
+                                                        </Frame.GestureRecognizers>
+                                                        <Label
+                                                            FontFamily="FontAwesomeSolid"
+                                                            FontSize="23"
+                                                            HorizontalTextAlignment="Center"
+                                                            Text="{x:Static fontawesome:FontAwesomeIcons.TimesCircle}"
+                                                            TextColor="Black" />
+                                                    </Frame>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+
+                                </ScrollView>
+
+                                <pancakeView:PancakeView
+                                    Grid.Row="2"
+                                    Padding="0,15,0,15"
+                                    BackgroundColor="{DynamicResource AccentColor}"
+                                    CornerRadius="5"
+                                    Shadow="{pancakeView:ShadowMarkup BlurRadius=15,
+                                                                      Color=Gray,
+                                                                      Offset='5,5'}">
+                                    <pancakeView:PancakeView.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding PickPhotoCommand}" />
+                                    </pancakeView:PancakeView.GestureRecognizers>
+
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        HorizontalOptions="Center"
+                                        Text="Add a photo"
+                                        TextColor="White"
+                                        VerticalOptions="Center" />
+
+                                </pancakeView:PancakeView>
+
+                                <Grid Grid.Row="3">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        Text="Include in photo gallery"
+                                        TextColor="Gray" />
+
+                                    <CheckBox
+                                        Grid.Column="1"
+                                        IsChecked="True"
+                                        Color="{DynamicResource AccentColor}" />
+
+                                </Grid>
+
+                            </Grid>
+
+                        </pancakeView:PancakeView>
+
+                    </Grid>
+
+                </Grid>
+
+                <pancakeView:PancakeView
+                    Grid.Row="2"
+                    Padding="15"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    CornerRadius="5"
+                    Shadow="{pancakeView:ShadowMarkup BlurRadius=15,
+                                                      Color=Gray,
+                                                      Offset='5,5'}">
+
+                    <StackLayout>
+                        <Label FontAttributes="Bold" Text="Comments" />
+                        <customControls:BorderlessEntry
+                            Margin="0,0,0,-5"
+                            Placeholder="Comments"
+                            PlaceholderColor="Gray"
+                            Text="{Binding Comments, Mode=TwoWay}" />
+                        <BoxView
+                            Margin="0,0,0,10"
+                            HeightRequest="1"
+                            Color="DarkGray" />
+                    </StackLayout>
+
+                </pancakeView:PancakeView>
+
+                <pancakeView:PancakeView
+                    Grid.Row="3"
+                    Padding="15"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    CornerRadius="5"
+                    Shadow="{pancakeView:ShadowMarkup BlurRadius=15,
+                                                      Color=Gray,
+                                                      Offset='5,5'}">
+
+                    <StackLayout>
+                        <Label FontAttributes="Bold" Text="Details" />
+
+                        <Grid Margin="0,0,0,-5">
+                            <customControls:BorderlessDatePicker Date="{Binding SelectedDate, Mode=TwoWay}" MaximumDate="{x:Static sys:DateTime.Now}" />
+                            <Label
+                                Margin="0,0,10,0"
+                                FontFamily="FontAwesomeRegular"
+                                FontSize="18"
+                                HorizontalOptions="End"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static fontawesome:FontAwesomeIcons.ChevronDown}"
+                                TextColor="Gray"
+                                VerticalOptions="Center" />
+                        </Grid>
+                        <BoxView
+                            Margin="0,0,0,10"
+                            HeightRequest="1"
+                            Color="DarkGray" />
+
+                        <Grid Margin="0,0,0,-5">
+                            <customControls:BorderlessPicker
+                                ItemsSource="{Binding Areas}"
+                                Placeholder="Select Area"
+                                SelectedItem="{Binding SelectedArea, Mode=TwoWay}"
+                                TitleColor="Gray" />
+                            <Label
+                                Margin="0,0,10,0"
+                                FontFamily="FontAwesomeRegular"
+                                FontSize="18"
+                                HorizontalOptions="End"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static fontawesome:FontAwesomeIcons.ChevronDown}"
+                                TextColor="Gray"
+                                VerticalOptions="Center" />
+                        </Grid>
+                        <BoxView
+                            Margin="0,0,0,10"
+                            HeightRequest="1"
+                            Color="DarkGray" />
+
+                        <Grid Margin="0,0,0,-5">
+                            <customControls:BorderlessPicker
+                                ItemsSource="{Binding Categories}"
+                                Placeholder="Task Category"
+                                SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
+                                TitleColor="Gray" />
+                            <Label
+                                Margin="0,0,10,0"
+                                FontFamily="FontAwesomeRegular"
+                                FontSize="18"
+                                HorizontalOptions="End"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static fontawesome:FontAwesomeIcons.ChevronDown}"
+                                TextColor="Gray"
+                                VerticalOptions="Center" />
+                        </Grid>
+                        <BoxView
+                            Margin="0,0,0,10"
+                            HeightRequest="1"
+                            Color="DarkGray" />
+
+
+                        <customControls:BorderlessEntry
+                            Margin="0,0,0,-5"
+                            Placeholder="Tags"
+                            PlaceholderColor="Gray"
+                            Text="{Binding Tags, Mode=TwoWay}" />
+                        <BoxView
+                            Margin="0,0,0,10"
+                            HeightRequest="1"
+                            Color="DarkGray" />
+                    </StackLayout>
+
+                </pancakeView:PancakeView>
+
+                <pancakeView:PancakeView
+                    Grid.Row="4"
+                    Padding="15"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    CornerRadius="5"
+                    Shadow="{pancakeView:ShadowMarkup BlurRadius=15,
+                                                      Color=Gray,
+                                                      Offset='5,5'}">
+
+                    <StackLayout>
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                Text="Link to existing event?" />
+
+                            <CheckBox
+                                Grid.Column="1"
+                                IsChecked="True"
+                                Color="{DynamicResource AccentColor}" />
+
+                        </Grid>
+
+                        <Grid Margin="0,0,0,-5">
+                            <customControls:BorderlessPicker
+                                ItemsSource="{Binding Events}"
+                                Placeholder="Select an event"
+                                SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
+                                TitleColor="Gray" />
+                            <Label
+                                Margin="0,0,10,0"
+                                FontFamily="FontAwesomeRegular"
+                                FontSize="18"
+                                HorizontalOptions="End"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static fontawesome:FontAwesomeIcons.ChevronDown}"
+                                TextColor="Gray"
+                                VerticalOptions="Center" />
+                        </Grid>
+                        <BoxView
+                            Margin="0,0,0,10"
+                            HeightRequest="1"
+                            Color="DarkGray" />
+                    </StackLayout>
+                </pancakeView:PancakeView>
+
+                <pancakeView:PancakeView
+                    Grid.Row="5"
+                    Margin="0,0,0,20"
+                    Padding="0,10,0,10"
+                    touch:TouchEff.Command="{Binding UploadDataCommand}"
+                    touch:TouchEff.PressedAnimationDuration="300"
+                    touch:TouchEff.PressedOpacity="0.6"
+                    touch:TouchEff.PressedScale="0.9"
+                    touch:TouchEff.RegularAnimationDuration="300"
+                    BackgroundColor="{DynamicResource AccentColor}"
+                    CornerRadius="5"
+                    Shadow="{pancakeView:ShadowMarkup BlurRadius=15,
+                                                      Color=Gray,
+                                                      Offset='10,10'}">
+                    <Label
+                        FontSize="20"
+                        HorizontalTextAlignment="Center"
+                        Text="Next"
+                        TextColor="White"
+                        VerticalTextAlignment="Center" />
+                </pancakeView:PancakeView>
+
+
+            </Grid>
+
+        </ScrollView>
+
+    </Grid>
+
 </ContentPage>
